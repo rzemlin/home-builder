@@ -1,4 +1,10 @@
 <h2>Home Builder Sessions Page</h2>
+
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+
 <%= form_tag ("/sessions") do %>
 
 <p>

@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 
     def new
-        #@user = User.new
+        if session[:current_user_id]
+            redirect_to "/", notice: => "already Logged in"
+        end
+        
     end
 
     def create

@@ -1,1 +1,9 @@
-Herro
+<h2> Welcome </h2>
+<br>
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+<br>
+
+<%= link_to "First Time? - Register", "/register" %>
+<%= link_to "Returning? - Sign in", "/login" %>

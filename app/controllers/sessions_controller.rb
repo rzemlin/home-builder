@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
     def create
         @user = User.find_by(:email => params[:email])
         if @user
-            #raise "login".inspect
+            session[:current_user_id] = @user.id
+            redirect_to "/"
         else
-            redirect_to "/login" #:message => "couldn't find the user"
-          
+            redirect_to "/login", :notice => "couldn't find the user"
         end
 
 
