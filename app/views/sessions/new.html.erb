@@ -1,0 +1,14 @@
+<h2>Home Builder Sessions Page</h2>
+<%= form_tag ("/sessions") do %>
+
+<p>
+<%= label_tag "Name:" %>
+<%= text_field_tag "name" %> 
+<br>
+<%= label_tag "Email:" %>
+<%= text_field_tag "email"%>
+
+</p>
+
+<%= submit_tag "Login" %>
+<% end %>
