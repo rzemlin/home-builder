@@ -1,23 +1,35 @@
 class SessionsController < ApplicationController
 
-    def new
+    #new route
+  def new
+    
+  end
 
-    end
+    #create route
+  def create
+    @user = User.new
 
-    def create
-        @user = User.find_by(:email => params[:email])
-        if @user && @user.authenticate(params[:password])
-          login(@user)
-          redirect_to "/"
-        else
-          redirect_to "/login", :notice => "Can't find that email."
-        end
+    #if session already created, always redirect back to user show
+    if session[:id]
+      redirect_to user_path(@user)
+
+    #if received standard login credentials (non-omniauth)
+    elsif 
+      @user = User.find_by(params[:username])
+       if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        session[:username] = @user.username
+        redirect_to user_path(@user)
+       end
       end
-
-    def destroy
-        reset_session
-        redirect_to '/'
-
     end
+    
+  def destroy
+    session.clear
+    redirect_to '/', :notice => "you have successfully signed out"
+  end
+
+  private
+
 
 end
