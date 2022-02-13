@@ -7,6 +7,15 @@ Rails.application.routes.draw do
   post 'sessions', to: 'sessions#create'
 
   get '/logout', to: 'sessions#destroy'
+  get '/show', to: 'users#show'
 
   root 'application#home'
+
+  #All user routes
+  resources :users, only: [:new, :create, :index, :show, :destroy]
+  
+  resources :users, only: [:show] do
+    resources :accounts, only: [:index, :show, :new]
+  end
+
 end

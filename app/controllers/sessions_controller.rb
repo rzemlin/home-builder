@@ -6,14 +6,13 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(:email => params[:email])
-        if @user
-            login(@user)
-            redirect_to "/"
+        if @user && @user.authenticate(params[:password])
+          login(@user)
+          redirect_to "/"
         else
-            redirect_to "/login", :notice => "couldn't find the user"
+          redirect_to "/login", :notice => "Can't find that email."
         end
-    
-    end
+      end
 
     def destroy
         reset_session

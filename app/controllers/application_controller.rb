@@ -6,17 +6,20 @@ class ApplicationController < ActionController::Base
     
     end
 
-    def logged_in?
-        session.include? :user_id
-      end
+    #gives current user assigned with the session or assigns a dummy User to avoid errors
+  def current_user
+    User.find_by_id(session[:user_id]) || User.new
+  end
 
-    private
+  #true or false if a session is active which indicates a user is logged in
+  def logged_in?
+    session.include? :user_id
+  end
 
-    def authentication_required
-        if !logged_in?
-            redirect_to "/login"
-        end
-    end
-    
+  #true or false if current user is an admin user
+  def admin?
+      current_user.admin == true
+  end
 
 end
+
