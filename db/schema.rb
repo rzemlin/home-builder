@@ -10,22 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_13_155937) do
-
-  create_table "houses_tables", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.text "address"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "materials", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.text "description"
-  end
+ActiveRecord::Schema.define(version: 2022_02_13_195000) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
